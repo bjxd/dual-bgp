@@ -1,0 +1,5 @@
+apiVersion: v2
+name: dcgw-bgp
+description: A Helm chart for establshing BGP with and advertising network prefixes to a VRF on two DCGW switches.
+version: 0.1.0
+appVersion: 1.16.1

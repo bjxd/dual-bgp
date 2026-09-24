@@ -1,0 +1,33 @@
+Thank you for installing {{ .Chart.Name }}!
+
+Release Name: {{ .Release.Name }}
+Namespace:    {{ .Release.Namespace }}
+
+1. Configured MetalLB IPAddressPools:
+{{- if .Values.ipAddressPools }}
+{{- range .Values.ipAddressPools }}
+   - {{ .name }}
+{{- end }}
+{{- else }}
+   (No IPAddressPools configured)
+{{- end }}
+
+2. Configured BGP Peers:
+{{- if .Values.dcgw1 }}
+   - DCGW1: {{ .Values.dcgw1.ipAddress }} (Local ASN: {{ .Values.dcgw1.localASN }}, Remote ASN: {{ .Values.dcgw1.remoteASN }})
+{{- end }}
+{{- if .Values.dcgw2 }}
+   - DCGW2: {{ .Values.dcgw2.ipAddress }} (Local ASN: {{ .Values.dcgw2.localASN }}, Remote ASN: {{ .Values.dcgw2.remoteASN }})
+{{- end }}
+
+--------------------------------------------------------------------------------
+VERIFICATION COMMANDS
+--------------------------------------------------------------------------------
+
+Check status of deployed MetalLB resources:
+  kubectl get ipaddresspool -n {{ .Release.Namespace }}
+  kubectl get bgpadvertisement -n {{ .Release.Namespace }}
+  kubectl get bgppeer -n {{ .Release.Namespace }}
+
+Check MetalLB speaker logs for active BGP sessions:
+  kubectl logs -n metallb-system -l app=metallb,component=speaker -f

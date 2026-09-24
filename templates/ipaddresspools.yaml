@@ -1,0 +1,12 @@
+{{- range .Values.ipAddressPools }}
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: {{ include "common.fullname" $ }}-{{ .name }}
+  namespace: {{ $.Release.Namespace }}
+  labels:
+      {{- include "common.labels" $ | nindent 4 }}
+spec:
+  {{- omit . "name" | toYaml | nindent 2 }}
+{{- end }}
