@@ -11,4 +11,7 @@ spec:
     {{- range .Values.ipAddressPools }}
     - {{ .name }}
     {{- end }}
+  {{- if .Values.bgpAdvertisementSpec }}
+  {{- omit .Values.bgpAdvertisementSpec "ipAddressPools" "ipAddressPoolSelectors" | toYaml | nindent 2 }}
+  {{- end }}
 {{- end }}

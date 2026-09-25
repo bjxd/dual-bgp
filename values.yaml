@@ -2,6 +2,12 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+# Full bgpAdvertisement.spec supported except for ipAddressPools and ipAddressPoolSelectors.
+# https://metallb.io/apis/#bgpadvertisementspec
+# ipAddressPools should be defined using the top-level ipAddressPools list.
+# ipAddressPoolSelectors spec not used as all pools should be advertised.
+bgpAdvertisementSpec: {}
+
 dcgw1:
   ipAddress: ""
   localASN: 65001
@@ -10,6 +16,7 @@ dcgw2:
   ipAddress: ""
   localASN: 65001
   remoteASN: 65002
+
 ipAddressPools: []
   # - name: pool-1
   #   addresses:
