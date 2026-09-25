@@ -1,5 +1,5 @@
 apiVersion: v2
 name: dual-bgp
-description: A Helm chart for establshing BGP with and advertising network prefixes to a VRF on two DCGW switches.
+description: A Helm chart for establshing BGP with two peers and advertising network prefixes to them.
 version: 0.3.0
 appVersion: 1.16.1

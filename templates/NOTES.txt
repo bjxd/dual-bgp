@@ -13,12 +13,14 @@ Namespace:    {{ .Release.Namespace }}
 {{- end }}
 
 2. Configured BGP Peers:
-{{- if .Values.dcgw1 }}
-   - DCGW1: {{ .Values.dcgw1.ipAddress }} (Local ASN: {{ .Values.dcgw1.localASN }}, Remote ASN: {{ .Values.dcgw1.remoteASN }})
-{{- end }}
-{{- if .Values.dcgw2 }}
-   - DCGW2: {{ .Values.dcgw2.ipAddress }} (Local ASN: {{ .Values.dcgw2.localASN }}, Remote ASN: {{ .Values.dcgw2.remoteASN }})
-{{- end }}
+- Peer 1:
+   {{- range $key, $value := .Values.bgpPeer1 }}
+   - {{ $key }}: {{ $value }}
+   {{- end }}
+- Peer 2:
+   {{- range $key, $value := .Values.bgpPeer2 }}
+   - {{ $key }}: {{ $value }}
+   {{- end }}
 
 --------------------------------------------------------------------------------
 VERIFICATION COMMANDS

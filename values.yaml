@@ -8,14 +8,10 @@
 # ipAddressPoolSelectors spec not used as all pools should be advertised.
 bgpAdvertisementSpec: {}
 
-dcgw1:
-  ipAddress: ""
-  localASN: 65001
-  remoteASN: 65002
-dcgw2:
-  ipAddress: ""
-  localASN: 65001
-  remoteASN: 65002
+# Full BGPPeer spec supported for each peer object below.
+# https://metallb.io/apis/#bgppeerspec
+bgpPeer1: {}
+bgpPeer2: {}
 
 ipAddressPools: []
   # - name: pool-1

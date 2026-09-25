@@ -1,23 +1,27 @@
+{{- if empty .Values.bgpPeer1 }}
+  {{- fail "bgpPeer1 cannot be empty! Please provide a valid configuration in values.yaml." }}
+{{- else }}
 apiVersion: metallb.io/v1beta2
 kind: BGPPeer
 metadata:
-  name: {{ include "common.fullname" $ }}-dcgw1
+  name: {{ include "common.fullname" $ }}-peer1
   namespace: {{ .Release.Namespace }}
   labels:
-      {{- include "common.labels" $ | nindent 4 }}
+    {{- include "common.labels" $ | nindent 4 }}
 spec:
-  myASN: {{ .Values.dcgw1.localASN }}
-  peerAddress: {{ .Values.dcgw1.ipAddress }}
-  peerASN: {{ .Values.dcgw1.remoteASN }}
+  {{- .Values.bgpPeer1 | toYaml | nindent 2 }}
+{{- end }}
 ---
+{{- if empty .Values.bgpPeer2 }}
+  {{- fail "bgpPeer2 cannot be empty! Please provide a valid configuration in values.yaml." }}
+{{- else }}
 apiVersion: metallb.io/v1beta2
 kind: BGPPeer
 metadata:
-  name: {{ include "common.fullname" $ }}-dcgw2
+  name: {{ include "common.fullname" $ }}-peer2
   namespace: {{ .Release.Namespace }}
   labels:
-      {{- include "common.labels" $ | nindent 4 }}
+    {{- include "common.labels" $ | nindent 4 }}
 spec:
-  myASN: {{ .Values.dcgw2.localASN }}
-  peerAddress: {{ .Values.dcgw2.ipAddress }}
-  peerASN: {{ .Values.dcgw2.remoteASN }}
+  {{- .Values.bgpPeer2 | toYaml | nindent 2 }}
+{{- end }}
