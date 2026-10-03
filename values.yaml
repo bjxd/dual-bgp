@@ -22,11 +22,11 @@ bgpPeer1:
   #   keepaliveTime: "30s"
   extraOptions: {}
 
-  # Plaintext password (Helm turns this into a Secret)
+  # Optional: plaintext password (Helm turns this into a Secret)
   password: ""
 
-  # Name of an existing Secret in the namespace
-  # Useful if you want to define the BGP password secret outside of this chart.
+  # Optional: name of an existing Secret in the namespace
+  # Useful if you want to define a BGP password secret outside of this chart.
   existingPasswordSecret: ""
 
 # Values of 'myASN', 'peerASN' and 'peerAddress' meets minimum spec for a working BGPPeer resource.
@@ -43,11 +43,11 @@ bgpPeer2:
   #   keepaliveTime: "30s"
   extraOptions: {}
 
-  # Plaintext password (Helm turns this into a Secret)
+  # Optional: plaintext password (Helm turns this into a Secret)
   password: ""
 
-  # Name of an existing Secret in the namespace
-  # Useful if you want to define the BGP password secret outside of this chart.
+  # Optional: name of an existing Secret in the namespace
+  # Useful if you want to define a BGP password secret outside of this chart.
   existingPasswordSecret: ""
 
 ipAddressPools: []
