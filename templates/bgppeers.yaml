@@ -1,6 +1,3 @@
-{{- if empty .Values.bgpPeer1 }}
-  {{- fail "bgpPeer1 cannot be empty! Please provide a valid configuration in values.yaml." }}
-{{- else }}
 apiVersion: metallb.io/v1beta2
 kind: BGPPeer
 metadata:
@@ -9,12 +6,13 @@ metadata:
   labels:
     {{- include "common.labels" $ | nindent 4 }}
 spec:
-  {{- .Values.bgpPeer1 | toYaml | nindent 2 }}
-{{- end }}
+  myASN: {{ required "A valid bgpPeer1.myASN is required!" .Values.bgpPeer1.myASN }}
+  peerASN: {{ required "A valid bgpPeer1.peerASN is required!" .Values.bgpPeer1.peerASN }}
+  peerAddress: {{ required "A valid bgpPeer1.peerAddress is required!" .Values.bgpPeer1.peerAddress }}
+  {{- if .Values.bgpPeer1.extraOptions }}
+    {{- toYaml .Values.bgpPeer1.extraOptions | nindent 2 }}
+  {{- end }}
 ---
-{{- if empty .Values.bgpPeer2 }}
-  {{- fail "bgpPeer2 cannot be empty! Please provide a valid configuration in values.yaml." }}
-{{- else }}
 apiVersion: metallb.io/v1beta2
 kind: BGPPeer
 metadata:
@@ -23,5 +21,9 @@ metadata:
   labels:
     {{- include "common.labels" $ | nindent 4 }}
 spec:
-  {{- .Values.bgpPeer2 | toYaml | nindent 2 }}
-{{- end }}
+  myASN: {{ required "A valid bgpPeer2.myASN is required!" .Values.bgpPeer2.myASN }}
+  peerASN: {{ required "A valid bgpPeer2.peerASN is required!" .Values.bgpPeer2.peerASN }}
+  peerAddress: {{ required "A valid bgpPeer2.peerAddress is required!" .Values.bgpPeer2.peerAddress }}
+  {{- if .Values.bgpPeer2.extraOptions }}
+    {{- toYaml .Values.bgpPeer2.extraOptions | nindent 2 }}
+  {{- end }}

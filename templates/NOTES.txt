@@ -14,12 +14,20 @@ Namespace:    {{ .Release.Namespace }}
 
 2. Configured BGP Peers:
 - Peer 1:
-   {{- range $key, $value := .Values.bgpPeer1 }}
-   - {{ $key }}: {{ $value }}
+   - Local ASN: {{ .Values.bgpPeer1.myASN }}
+   - Peer ASN: {{ .Values.bgpPeer1.peerASN }}
+   - Peer Address: {{ .Values.bgpPeer1.peerAddress }}
+   {{- if .Values.bgpPeer1.extraOptions }}
+   - Extra Options:
+     {{- toYaml .Values.bgpPeer1.extraOptions | nindent 6 }}
    {{- end }}
 - Peer 2:
-   {{- range $key, $value := .Values.bgpPeer2 }}
-   - {{ $key }}: {{ $value }}
+   - Local ASN: {{ .Values.bgpPeer2.myASN }}
+   - Peer ASN: {{ .Values.bgpPeer2.peerASN }}
+   - Peer Address: {{ .Values.bgpPeer2.peerAddress }}
+   {{- if .Values.bgpPeer2.extraOptions }}
+   - Extra Options:
+     {{- toYaml .Values.bgpPeer2.extraOptions | nindent 6 }}
    {{- end }}
 
 --------------------------------------------------------------------------------

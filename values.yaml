@@ -8,10 +8,26 @@
 # ipAddressPoolSelectors spec not used as all pools should be advertised.
 bgpAdvertisementSpec: {}
 
-# Full BGPPeer spec supported for each peer object below.
+# Values of 'myASN', 'peerASN' and 'peerAddress' meets minimum spec for a BGPPeer resource.
+# Full BGPPeer spec supported in 'extraOptions' for each peer object below.
 # https://metallb.io/apis/#bgppeerspec
-bgpPeer1: {}
-bgpPeer2: {}
+bgpPeer1:
+  myASN: null
+  peerASN: null
+  peerAddress: null
+  extraOptions: {}
+  # Example usage:
+  # extraOptions:
+  #   holdTime: "120s"
+  #   keepaliveTime: "30s"
+  #   passwordSecret:
+  #     name: bgp-secret
+  #     key: password
+bgpPeer2:
+  myASN: null
+  peerASN: null
+  peerAddress: null
+  extraOptions: {}
 
 ipAddressPools: []
   # - name: pool-1
