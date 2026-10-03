@@ -8,26 +8,47 @@
 # ipAddressPoolSelectors spec not used as all pools should be advertised.
 bgpAdvertisementSpec: {}
 
-# Values of 'myASN', 'peerASN' and 'peerAddress' meets minimum spec for a BGPPeer resource.
-# Full BGPPeer spec supported in 'extraOptions' for each peer object below.
-# https://metallb.io/apis/#bgppeerspec
+# Three values required at a minimum for a working BGPPeer resource.
 bgpPeer1:
   myASN: null
   peerASN: null
   peerAddress: null
-  extraOptions: {}
-  # Example usage:
+
+  # Optional extra BGPPeer spec.
+  # Full BGPPeer spec supported: https://metallb.io/apis/#bgppeerspec
+  # For example:
   # extraOptions:
   #   holdTime: "120s"
   #   keepaliveTime: "30s"
-  #   passwordSecret:
-  #     name: bgp-secret
-  #     key: password
+  extraOptions: {}
+
+  # Plaintext password (Helm turns this into a Secret)
+  password: ""
+
+  # Name of an existing Secret in the namespace
+  # Useful if you want to define the BGP password secret outside of this chart.
+  existingPasswordSecret: ""
+
+# Values of 'myASN', 'peerASN' and 'peerAddress' meets minimum spec for a working BGPPeer resource.
 bgpPeer2:
   myASN: null
   peerASN: null
   peerAddress: null
+
+  # Optional extra BGPPeer spec.
+  # Full BGPPeer spec supported: https://metallb.io/apis/#bgppeerspec
+  # For example:
+  # extraOptions:
+  #   holdTime: "120s"
+  #   keepaliveTime: "30s"
   extraOptions: {}
+
+  # Plaintext password (Helm turns this into a Secret)
+  password: ""
+
+  # Name of an existing Secret in the namespace
+  # Useful if you want to define the BGP password secret outside of this chart.
+  existingPasswordSecret: ""
 
 ipAddressPools: []
   # - name: pool-1
