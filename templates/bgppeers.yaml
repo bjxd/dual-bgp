@@ -9,6 +9,10 @@ spec:
   myASN: {{ required "A valid bgpPeer1.myASN is required!" .Values.bgpPeer1.myASN }}
   peerASN: {{ required "A valid bgpPeer1.peerASN is required!" .Values.bgpPeer1.peerASN }}
   peerAddress: {{ required "A valid bgpPeer1.peerAddress is required!" .Values.bgpPeer1.peerAddress }}
+  {{- if or .Values.bgpPeer1.password .Values.bgpPeer1.existingPasswordSecret }}
+  passwordSecret:
+    name: {{ default (printf "%s-peer1-password" (include "common.fullname" .)) .Values.bgpPeer1.existingPasswordSecret }}
+  {{- end }}
   {{- if .Values.bgpPeer1.extraOptions }}
     {{- toYaml .Values.bgpPeer1.extraOptions | nindent 2 }}
   {{- end }}
@@ -24,6 +28,10 @@ spec:
   myASN: {{ required "A valid bgpPeer2.myASN is required!" .Values.bgpPeer2.myASN }}
   peerASN: {{ required "A valid bgpPeer2.peerASN is required!" .Values.bgpPeer2.peerASN }}
   peerAddress: {{ required "A valid bgpPeer2.peerAddress is required!" .Values.bgpPeer2.peerAddress }}
+  {{- if or .Values.bgpPeer2.password .Values.bgpPeer2.existingPasswordSecret }}
+  passwordSecret:
+    name: {{ default (printf "%s-peer2-password" (include "common.fullname" .)) .Values.bgpPeer2.existingPasswordSecret }}
+  {{- end }}
   {{- if .Values.bgpPeer2.extraOptions }}
     {{- toYaml .Values.bgpPeer2.extraOptions | nindent 2 }}
   {{- end }}
