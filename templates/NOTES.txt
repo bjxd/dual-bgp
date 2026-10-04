@@ -17,6 +17,9 @@ Namespace:    {{ .Release.Namespace }}
    - Local ASN: {{ .Values.bgpPeer1.myASN }}
    - Peer ASN: {{ .Values.bgpPeer1.peerASN }}
    - Peer Address: {{ .Values.bgpPeer1.peerAddress }}
+   {{- if or .Values.bgpPeer1.password .Values.bgpPeer1.existingPasswordSecret }}
+   - Using MD5 password.
+   {{- end }}
    {{- if .Values.bgpPeer1.extraOptions }}
    - Extra Options:
      {{- toYaml .Values.bgpPeer1.extraOptions | nindent 6 }}
@@ -25,6 +28,9 @@ Namespace:    {{ .Release.Namespace }}
    - Local ASN: {{ .Values.bgpPeer2.myASN }}
    - Peer ASN: {{ .Values.bgpPeer2.peerASN }}
    - Peer Address: {{ .Values.bgpPeer2.peerAddress }}
+   {{- if or .Values.bgpPeer2.password .Values.bgpPeer2.existingPasswordSecret }}
+   - Using MD5 password.
+   {{- end }}
    {{- if .Values.bgpPeer2.extraOptions }}
    - Extra Options:
      {{- toYaml .Values.bgpPeer2.extraOptions | nindent 6 }}
