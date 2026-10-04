@@ -14,6 +14,13 @@ bgpPeer1:
   peerASN: null
   peerAddress: null
 
+  # Optional: plaintext password (Helm turns this into a Secret)
+  password: ""
+
+  # Optional: name of an existing Secret in the namespace
+  # Useful if you want to define a BGP password secret outside of this chart.
+  existingPasswordSecret: ""
+
   # Optional extra BGPPeer spec.
   # Full BGPPeer spec supported: https://metallb.io/apis/#bgppeerspec
   # For example:
@@ -21,13 +28,6 @@ bgpPeer1:
   #   holdTime: "120s"
   #   keepaliveTime: "30s"
   extraOptions: {}
-
-  # Optional: plaintext password (Helm turns this into a Secret)
-  password: ""
-
-  # Optional: name of an existing Secret in the namespace
-  # Useful if you want to define a BGP password secret outside of this chart.
-  existingPasswordSecret: ""
 
 # Values of 'myASN', 'peerASN' and 'peerAddress' meets minimum spec for a working BGPPeer resource.
 bgpPeer2:
@@ -35,6 +35,13 @@ bgpPeer2:
   peerASN: null
   peerAddress: null
 
+  # Optional: plaintext password (Helm turns this into a Secret)
+  password: ""
+
+  # Optional: name of an existing Secret in the namespace
+  # Useful if you want to define a BGP password secret outside of this chart.
+  existingPasswordSecret: ""
+
   # Optional extra BGPPeer spec.
   # Full BGPPeer spec supported: https://metallb.io/apis/#bgppeerspec
   # For example:
@@ -42,13 +49,6 @@ bgpPeer2:
   #   holdTime: "120s"
   #   keepaliveTime: "30s"
   extraOptions: {}
-
-  # Optional: plaintext password (Helm turns this into a Secret)
-  password: ""
-
-  # Optional: name of an existing Secret in the namespace
-  # Useful if you want to define a BGP password secret outside of this chart.
-  existingPasswordSecret: ""
 
 ipAddressPools: []
   # - name: pool-1
